@@ -1,19 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Metadata} from './metadata';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {HEROES} from './mock-heroes';
 import {MessageService} from './message.service';
 import {Observable} from "rxjs/internal/Observable";
 import { catchError, map, tap } from 'rxjs/operators';
 import {of} from "rxjs/internal/observable/of";
-
-@Injectable({
-  providedIn: 'root'
-})
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+@Injectable({
+  providedIn: 'root'
+})
 
 export class CService {
   private mainUrl = 'api/heroes';  // URL to web api
