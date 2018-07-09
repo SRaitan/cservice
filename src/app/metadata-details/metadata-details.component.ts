@@ -1,23 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-
-import { Metadata }         from '../metadata';
-import { CService }  from '../c.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
+import {Metadata} from '../metadata';
+import {CService} from '../c.service';
 
 @Component({
   selector: 'metadata-details',
   templateUrl: './metadata-details.component.html',
-  styleUrls: [ './metadata-details.component.css' ]
+  styleUrls: ['./metadata-details.component.css']
 })
 export class MetadataDetailsComponent implements OnInit {
-  @Input() hero: Metadata;
+  @Input() metadata: Metadata;
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: CService,
+    private cService: CService,
     private location: Location
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.getC();
@@ -25,12 +25,12 @@ export class MetadataDetailsComponent implements OnInit {
 
   getC(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getC(id)
-      .subscribe(hero => this.hero = hero);
+    this.cService.getChannelById(id)
+      .subscribe(func => this.metadata = func);
   }
 
   save(): void {
-    this.heroService.updateHero(this.hero)
+    this.cService.updateChannel(this.metadata)
       .subscribe(() => this.goBack());
   }
 

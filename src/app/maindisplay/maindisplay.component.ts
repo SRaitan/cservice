@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Metadata } from '../metadata';
 import { CService } from '../c.service';
 import {Observable} from "rxjs/internal/Observable";
-import {HEROES} from "../mock-heroes";
 import {of} from "rxjs/internal/observable/of";
 
 @Component({

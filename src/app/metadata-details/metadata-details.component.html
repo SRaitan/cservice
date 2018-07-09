@@ -1,11 +1,20 @@
-<div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
+<div *ngIf="metadata">
+  <h2>Update {{metadata.name}}</h2>
   <div>
-    <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
+    <label>Type:
+      <input [(ngModel)]="metadata.name" placeholder="name"/>
     </label>
   </div>
-  <button (click)="save()">save</button>
-  <button (click)="goBack()">go back</button>
+  <div>
+    <label>Family:
+      <input [(ngModel)]="metadata.family" placeholder="family"/>
+    </label>
+  </div>
+  <div>
+    <label>{{metadata.field}}
+      <input [(ngModel)]="metadata.field" placeholder="field"/>
+    </label>
+  </div>
+  <button (click)="save()">Update</button>
+  <button *ngIf="metadata.field" (click)="goBack()">Get</button>
 </div>

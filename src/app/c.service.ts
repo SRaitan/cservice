@@ -13,13 +13,11 @@ const httpOptions = {
 })
 
 export class CService {
-  private mainUrl = 'api/heroes';  // URL to web api
+  private channelServiceUrl = 'api/heroes';  // URL to web api
 
   getAllCs(): Observable<Metadata[]> {
-     return this.http.get<Metadata[]>(this.mainUrl)
-      .pipe(
-        catchError(this.handleError('getHeroes', []))
-      );
+     return this.http.get<Metadata[]>(this.channelServiceUrl)
+      .pipe(catchError(this.handleError('getHeroes', [])));
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -36,19 +34,19 @@ export class CService {
     };
   }
 
-  getC(id: number): Observable<Metadata> {
-    // TODO: send the message _after_ fetching the hero
-    const url = `${this.mainUrl}/${id}`;
+  getChannelById(id: number): Observable<Metadata> {
+    // TODO: send the message _after_ fetching the metadata
+    const url = `${this.channelServiceUrl}/${id}`;
     return this.http.get<Metadata>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Metadata>(`getC id=${id}`))
     );
   }
 
-  updateHero (hero: Metadata): Observable<any> {
-    return this.http.put(this.mainUrl, hero, httpOptions).pipe(
+  updateChannel (hero: Metadata): Observable<any> {
+    return this.http.put(this.channelServiceUrl, hero, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+      catchError(this.handleError<any>('updateChannel'))
     );
   }
 
