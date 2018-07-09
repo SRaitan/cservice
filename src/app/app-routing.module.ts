@@ -1,12 +1,10 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent }   from './dashboard/dashboard.component';
-import { MaindisplayComponent }      from './maindisplay/maindisplay.component';
 import {MetadataDetailsComponent} from "./metadata-details/metadata-details.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'main', component: MaindisplayComponent },
   { path: 'detail/:id', component: MetadataDetailsComponent },
   { path: 'dashboard', component: DashboardComponent }
 ];

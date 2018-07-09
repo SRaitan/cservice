@@ -8,16 +8,16 @@ import { CService } from '../c.service';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  heroes: Metadata[] = [];
+  functions: Metadata[] = [];
 
-  constructor(private heroService: CService) { }
+  constructor(private cService: CService) { }
 
   ngOnInit() {
     this.getHeroes();
   }
 
   getHeroes(): void {
-    this.heroService.getAllCs()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    this.cService.getAllCs()
+      .subscribe(funcList => this.functions = funcList.slice(1, 5));
   }
 }

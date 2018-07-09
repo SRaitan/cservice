@@ -11,7 +11,6 @@ import {of} from "rxjs/internal/observable/of";
   styleUrls: ['./maindisplay.component.css']
 })
 export class MaindisplayComponent implements OnInit {
-  //hero : Metadata = {id:1, name: 'Thor'};
   heroes: Metadata[];
   selectedHero: Metadata;
 
