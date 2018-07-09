@@ -17,41 +17,42 @@ export class CService {
 
   getAllCs(): Observable<Metadata[]> {
      return this.http.get<Metadata[]>(this.channelServiceUrl)
-      .pipe(catchError(this.handleError('getHeroes', [])));
+      .pipe(catchError(this.handleError('getAllCs', [])));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  funcs(): String[] {
+    return ['uno', 'dos', 'tres', 'catorce'];
   }
 
   getChannelById(id: number): Observable<Metadata> {
     // TODO: send the message _after_ fetching the metadata
     const url = `${this.channelServiceUrl}/${id}`;
     return this.http.get<Metadata>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
+      tap(_ => this.log(`fetched by id=${id}`)),
       catchError(this.handleError<Metadata>(`getC id=${id}`))
     );
   }
 
-  updateChannel (hero: Metadata): Observable<any> {
-    return this.http.put(this.channelServiceUrl, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+  updateChannel (metadata: Metadata): Observable<any> {
+    return this.http.put(this.channelServiceUrl, metadata, httpOptions).pipe(
+      tap(_ => this.log(`updated =${metadata.id}`)),
       catchError(this.handleError<any>('updateChannel'))
     );
   }
 
   private log(message: string) {
     this.messageService.add('CService: ' + message);
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
   constructor(private http: HttpClient,

@@ -1,8 +1,8 @@
 <div class="grid grid-pad">
   <a *ngFor="let func of functions" class="col-1-4"
-     routerLink="/detail/{{func.id}}">
+     routerLink="/detail/{{func.field}}">
     <div class="module hero">
-      <h4>{{func.name}}</h4>
+      <h4>{{func}}</h4>
     </div>
   </a>
 </div>

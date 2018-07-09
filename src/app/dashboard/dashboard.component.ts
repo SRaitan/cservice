@@ -18,6 +18,10 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.cService.getAllCs()
-      .subscribe(funcList => this.functions = funcList.slice(1, 5));
+      .subscribe(funcList => this.functions = funcList.slice(0, 4));
+  }
+
+  funcs(): void {
+    this.cService.funcs();
   }
 }
